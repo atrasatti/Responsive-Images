@@ -6,7 +6,7 @@
 (function( win ){
 	//defaults / mixins
 	var	rwdi			= win.rwd_images || {},
-		widthBreakPoint	= rwdi.widthBreakPoint || 480,
+		widthBreakPoint	= rwdi.widthBreakPoint || 360,
 		htmlClass		= "rwd-imgs-lrg",
 		wideload		= win.screen.availWidth > widthBreakPoint,
 		filePath		= location.href,
@@ -55,7 +55,7 @@
             	base = null;
             }
             else{
-            	base.href = dirPath +  "rwd-" + screen.width + "x" + screen.height + "/";
+               base.href = dirPath +  "rwd-" + (screen.width-20) + "x" + (screen.height-20) + "/";
             }
             //return 
 			return base;

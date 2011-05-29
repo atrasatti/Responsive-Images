@@ -6,7 +6,10 @@
 RewriteEngine On
 # direct image requests to temp
 RewriteCond %{QUERY_STRING} full=(.*)&?
-RewriteRule (.*)rwd-([0-9]+)x([0-9]+)/.*\.(jpe?g|png|gif) $1%1 [L]
+#RewriteRule (.*)rwd-([0-9]+)x([0-9]+)/.*\.(jpe?g|png|gif) $1%1 [L]
+#This rule does not take into account SSL. Also you might want to use %{SERVER_PORT} if you are not using port 80
+#This only works if you set the FULL path to the content. Relative paths won't work unless you do some more RegExp magic
+RewriteRule (.*)rwd-([0-9]+)x([0-9]+)/.*\.(jpe?g|png|gif) http://src.sencha.io/$2/$3/http://%{HTTP_HOST}/%1 [L]
 # ignore trap for non-image requests, rewrite URL without trap segment
 RewriteRule (.*)rwd-([0-9]+)x([0-9]+)/(.*)$ $1$2
 # //End Responsive Images
